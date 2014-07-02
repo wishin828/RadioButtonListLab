@@ -89,13 +89,13 @@ namespace System.Web.Mvc.Html
         /// <param name="direction">顯示方向:垂直、水平</param>
         /// <returns></returns>
         public static MvcHtmlString RadioButtonListForList<T, TProperty>(this HtmlHelper<T> helper
-           , IEnumerable items, string dataValueField, string dataTextField, Expression<Func<T, TProperty>> expression
-           , object htmlAttributes = null, bool appendOptionLabel = false, string optionLabel = null
+            , IEnumerable items, string dataValueField, string dataTextField, Expression<Func<T, TProperty>> expression
+            , object htmlAttributes = null, bool appendOptionLabel = false, string optionLabel = null
             , RepeatDirections direction = RepeatDirections.Horizontal)
         {
             string name = BuildColumnNameFromModel(expression);
             var optionData = from object o in items
-                             select new KeyValuePair<string, string>(Eval(o, dataTextField), Eval(o, dataValueField));
+                                select new KeyValuePair<string, string>(Eval(o, dataTextField), Eval(o, dataValueField));
             string defaultSelectValue = helper.ViewData.Eval(name).ToString();
             return BuildRadioButtonList(helper, expression, name, defaultSelectValue, optionData, htmlAttributes, appendOptionLabel, optionLabel, direction);
         }
